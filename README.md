@@ -135,7 +135,7 @@ API DOCUMENTATION
 
 Swagger UI:
 
-http://localhost:3000/api-docs
+https://finance-data-processing-and-access-zwda.onrender.com/api-docs
 
 You can authenticate and test all endpoints directly from the browser.
 
