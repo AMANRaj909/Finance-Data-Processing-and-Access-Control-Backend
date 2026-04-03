@@ -1,0 +1,52 @@
+// Prisma schema for the finance backend.
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  ANALYST
+  VIEWER
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum RecordType {
+  INCOME
+  EXPENSE
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(VIEWER)
+  status    Status   @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  records Record[]
+}
+
+model Record {
+  id        String     @id @default(uuid())
+  amount    Float
+  type      RecordType
+  category  String
+  date      DateTime
+  note      String?
+  createdBy String
+  user      User       @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  isDeleted Boolean    @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
