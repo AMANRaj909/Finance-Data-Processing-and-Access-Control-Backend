@@ -16,6 +16,9 @@ The system is designed with **clean architecture, secure authentication, and sca
 
 ## 🌐 Live Deployment
 
+* 🔗 **Landing Page (Project Overview)**:
+https://amanraj909.github.io/Finance-Data-Processing-and-Access-Control-Backend/
+
 * 🔗 **API Base URL**:
   https://finance-data-processing-and-access-zwda.onrender.com
 
