@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Finance Data Backend</title>
+  <title>Finance Data Backend API</title>
 
   <style>
     * {
@@ -56,7 +56,6 @@
       text-decoration: none;
       font-weight: 600;
       transition: all 0.25s ease;
-      transform: translateY(0);
     }
 
     .btn:hover {
@@ -79,7 +78,7 @@
       background: #334155;
     }
 
-    /* Stats cards */
+    /* Stats */
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -154,13 +153,14 @@
     <h1>Finance Data Backend API</h1>
 
     <p>
-      Production-ready backend with RBAC, financial tracking, and analytics.
+      Production-ready backend with role-based access control, financial tracking, and analytics.
       Built using NestJS, Prisma, PostgreSQL, and JWT authentication.
     </p>
 
+    <!-- Buttons -->
     <div class="buttons">
       <a href="https://finance-data-processing-and-access-zwda.onrender.com/api-docs" target="_blank" class="btn primary">
-        🚀 Open Swagger Docs
+        🚀 Swagger API Docs
       </a>
 
       <a href="https://finance-data-processing-and-access-zwda.onrender.com" target="_blank" class="btn secondary">
@@ -169,6 +169,10 @@
 
       <a href="https://github.com/AMANRaj909/Finance-Data-Processing-and-Access-Control-Backend" target="_blank" class="btn secondary">
         💻 GitHub Repo
+      </a>
+
+      <a href="https://github.com/AMANRaj909/Finance-Data-Processing-and-Access-Control-Backend#readme" target="_blank" class="btn secondary">
+        📄 Setup Guide
       </a>
     </div>
 
@@ -190,30 +194,33 @@
       </div>
     </div>
 
-    <!-- Try API -->
+    <!-- Steps -->
     <div class="steps">
       <div class="step">
-        <strong>1.</strong> Open Swagger Docs
+        <strong>1.</strong> Open Swagger API Documentation
       </div>
 
       <div class="step">
-        <strong>2.</strong> Login using:
-        <br />
-        admin@example.com / Admin123456!
+        <strong>2.</strong> Authenticate using admin credentials (refer to Setup Guide)
       </div>
 
       <div class="step">
-        <strong>3.</strong> Click "Authorize" and paste token
+        <strong>3.</strong> Use the "Authorize" button with your JWT token
       </div>
 
       <div class="step">
-        <strong>4.</strong> Test Users, Records, and Dashboard APIs
+        <strong>4.</strong> Explore Users, Records, and Dashboard APIs
       </div>
     </div>
 
+    <!-- Footer -->
     <div class="tag">
       Built by Aman Raj · NestJS · Prisma · PostgreSQL · JWT
     </div>
+
+    <p style="margin-top:20px; font-size:0.75rem; color:#64748b;">
+      This is a demo backend project. No real user data is stored or processed.
+    </p>
 
   </div>
 </body>
