@@ -22,7 +22,7 @@ The system is designed with **clean architecture, secure authentication, and sca
 * 📘 **Swagger API Docs**:
   https://finance-data-processing-and-access-zwda.onrender.com/api-docs
 
-**  Quick Start (Evaluator Guide) || Demo Access **
+  Quick Start (Evaluator Guide) || Demo Access 
 
 To simplify testing, a seeded admin user is available.
 
@@ -241,4 +241,4 @@ It is intended for **evaluation and demonstration purposes only** — avoid usin
 ## 👨‍💻 Author
 
 **Aman Raj**
-Backend Developer (B.Tech CSE)
+Backend Developer (B.Tech CSE) | Amanconnect010@gmail.com | +91 9142324099
