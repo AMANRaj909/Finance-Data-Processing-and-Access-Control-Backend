@@ -1,25 +1,66 @@
-FINANCE DATA PROCESSING BACKEND
+#  Finance Data Processing & Access Control Backend
+
+##  Overview
+
+This project is a **production-style backend system** for managing financial data with **role-based access control (RBAC)** and analytics.
+
+It simulates a real-world finance dashboard where:
+
+* **Admins** manage users and system-wide data
+* **Analysts** create and analyze financial records
+* **Viewers** access read-only insights
+
+The system is designed with **clean architecture, secure authentication, and scalable data handling**, and is fully deployed with a live PostgreSQL database.
+
+---
+
+## 🌐 Live Deployment
+
+* 🔗 **API Base URL**:
+  https://finance-data-processing-and-access-zwda.onrender.com
+
+* 📘 **Swagger API Docs**:
+  https://finance-data-processing-and-access-zwda.onrender.com/api-docs
+
+**  Quick Start (Evaluator Guide) || Demo Access **
+
+To simplify testing, a seeded admin user is available.
+
+Admin Credentials
+Email: [admin@example.com]
+Password: Admin123456!
+
+Steps to use:
+
+1. Open Swagger API Docs
+2. Use POST /auth/login with above credentials
+3. Copy the JWT token
+4. Click "Authorize" and paste: Bearer <token>
+5. Test all protected endpoints
+
+Note: These credentials are for demonstration purposes only. Do not use real or sensitive data.
 
 
-OVERVIEW
+---
 
-This project is a backend system for managing financial records with role-based access control. It models a simple internal finance dashboard where different types of users interact with data based on their permissions.
+## ✨ Features
 
-Admins manage users, analysts work with financial records, and viewers have read-only access to dashboard data. Authentication is handled using JWT, and access control is enforced at the API level.
+* 🔐 Role-Based Access Control (ADMIN, ANALYST, VIEWER)
+* 📊 Financial Records Management (CRUD + soft delete)
+* 🔍 Filtering, search, pagination, and sorting
+* 📈 Dashboard analytics:
 
+  * Total income & expenses
+  * Category-wise breakdown
+  * Trends (time-based)
+  * Recent activity
+* 🔑 JWT-based authentication with protected routes
+* 📄 Interactive API documentation using Swagger
+* 🧱 Consistent API response structure
 
-FEATURES
+---
 
-- Role-based access control (ADMIN, ANALYST, VIEWER)
-- Financial records management (create, read, update, soft delete)
-- Filtering, pagination, search, and sorting for records
-- Dashboard analytics (summary, category breakdown, trends, recent activity)
-- JWT-based authentication with protected routes
-- Swagger API documentation at /api-docs
-- Consistent API responses using a standard response structure
-
-
-TECH STACK
+## 🛠 Tech Stack
 
 | Layer    | Technology     |
 | -------- | -------------- |
@@ -27,140 +68,177 @@ TECH STACK
 | Database | PostgreSQL     |
 | ORM      | Prisma         |
 | Auth     | JWT (Passport) |
-| Docs     | Swagger        |
+| API Docs | Swagger        |
 
+---
 
-API OVERVIEW
+## 🔐 Authentication & Access Control
 
+### Login
 
-Authentication
+```http
+POST /auth/login
+```
 
-- POST /auth/login — returns a JWT token used to access protected endpoints.
-
-All protected routes require:
+Returns a JWT token:
 
 ```
 Authorization: Bearer <token>
 ```
 
+---
 
-Roles and access
+### Roles & Permissions
 
-ADMIN
+#### 👑 ADMIN
 
-- Manage users (create, update role/status)
-- Full access to all records and dashboard data
+* Manage users (create/update roles/status)
+* Full access to all records and dashboard data
 
-ANALYST
+#### 📊 ANALYST
 
-- Create and view their own financial records
-- Access dashboard analytics
+* Create and manage their own financial records
+* Access dashboard analytics
 
-VIEWER
+#### 👁 VIEWER
 
-- Read-only access to dashboard endpoints
+* Read-only access to dashboard data
 
-Non-admin users only access their own records (createdBy), while admins can access all data.
+> Non-admin users can only access their own records (`createdBy`), while admins have full visibility.
 
+---
 
-Example requests
+## 📡 API Highlights
 
-- Get records with filters:
+### Get Records with Filters
 
-  GET /records?page=1&limit=10&search=salary&sortBy=date&order=desc
+```http
+GET /records?page=1&limit=10&search=salary&sortBy=date&order=desc
+```
 
-- Dashboard summary:
+### Dashboard Summary
 
-  GET /dashboard/summary?startDate=2026-01-01&endDate=2026-12-31
+```http
+GET /dashboard/summary?startDate=2026-01-01&endDate=2026-12-31
+```
 
-- Create user (admin only):
+### Create User (Admin Only)
 
-  POST /users
+```http
+POST /users
+```
 
-Full API details are available in Swagger.
+👉 Full API details available in Swagger UI.
 
+---
 
-SETUP
+## ⚙️ Setup & Installation
 
+### Prerequisites
 
-Prerequisites
+* Node.js
+* PostgreSQL
 
-- Node.js
-- PostgreSQL
+---
 
-
-Installation
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-Environment variables
+---
 
-Create a .env file and configure:
+### Environment Variables
+
+Create a `.env` file:
 
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/db_name
 JWT_SECRET=your_secret_key
-```
 
-Optional:
-
-```env
+# Optional
 PORT=3000
 SEED_ADMIN_EMAIL=admin@example.com
 SEED_ADMIN_PASSWORD=Admin123456!
 ```
 
-Run migrations
+---
+
+### Run Migrations
 
 ```bash
 npx prisma migrate dev
 ```
 
-Seed admin user (optional)
+---
+
+### Seed Admin User (Optional)
 
 ```bash
 npm run seed
 ```
 
-Start server
+---
+
+### Start Server
 
 ```bash
 npm run start:dev
 ```
 
+---
 
-API DOCUMENTATION
+## 📘 API Documentation
 
-Swagger UI:
+Swagger UI allows you to:
 
+* Authenticate using JWT
+* Test all endpoints
+* View request/response schemas
+
+👉 Access here:
 https://finance-data-processing-and-access-zwda.onrender.com/api-docs
 
-You can authenticate and test all endpoints directly from the browser.
+---
 
+## 🧠 Design Decisions
 
-DESIGN DECISIONS
+* **Prisma ORM** for type-safe queries and developer productivity
+* **PostgreSQL** for relational data modeling and efficient aggregation
+* **JWT Authentication** for stateless and scalable security
+* **RBAC via Guards** for clean and centralized permission handling
+* **Soft Deletes** to prevent permanent data loss
+* **Modular Architecture (NestJS)** for maintainability and scalability
 
-- Prisma was used for type-safe queries and faster development
-- PostgreSQL fits the relational nature of users and financial records
-- JWT authentication keeps the system stateless and simple
-- RBAC is enforced using guards at the backend level
-- Soft delete is used for records to avoid permanent data loss
-- A response wrapper ensures consistent API outputs
+---
 
+## ⚠️ Assumptions
 
-ASSUMPTIONS
+* Analysts can only access their own records
+* Admins have full system control
+* Frontend is intentionally excluded (backend-focused assignment)
+* Security features are simplified (no refresh tokens, rate limiting, etc.)
 
-- Analysts can create and view their own records
-- Only admins can manage users and modify all records
-- This project focuses on backend logic; frontend is intentionally not included
-- Security is simplified for demonstration (no refresh tokens, rate limiting, etc.)
+---
 
+## 🔮 Future Improvements
 
-FUTURE IMPROVEMENTS
+* ✅ Unit & integration testing
+* ⚡ Caching for dashboard queries
+* 🛡 Rate limiting & audit logging
+* 🌐 Frontend dashboard (React/Next.js)
 
-- Add unit and integration tests
-- Introduce caching for dashboard queries
-- Implement rate limiting and audit logging
-- Build a frontend client for visualization
+---
+
+## 📝 Note
+
+This system is deployed with a live PostgreSQL database and demonstrates production-style backend architecture.
+It is intended for **evaluation and demonstration purposes only** — avoid using sensitive data.
+
+---
+
+## 👨‍💻 Author
+
+**Aman Raj**
+Backend Developer (B.Tech CSE)
